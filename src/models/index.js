@@ -5,3 +5,4 @@ const Movie = require('./Movie')
 
 Movie.belongsToMany(Director, { through: 'moviesDirectors' })
 Director.hasMany(Movie)
+
