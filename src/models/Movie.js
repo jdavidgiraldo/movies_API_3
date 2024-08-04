@@ -12,12 +12,12 @@ const Movie = sequelize.define('movie', {
     allowNull: false,
   },
 
-  syopsis: {
+  synopsis: {
     type: DataTypes.TEXT,
     allowNull: false,
   },
 
-  realeaseYear: {
+  releaseYear: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
