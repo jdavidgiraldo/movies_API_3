@@ -23,7 +23,7 @@ const Director = sequelize.define('director', {
   },
 
   birthday: {
-    type: DataTypes.DATE,
+    type: DataTypes.DATEONLY,
     allowNull: false,
   },
 })

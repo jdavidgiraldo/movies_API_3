@@ -16,7 +16,7 @@ const create = catchError(async (req, res) => {
 
 const getOne = catchError(async (req, res) => {
   const { id } = req.params
-  const result = await Movie.findByPk({ include: [Director, Actor, Genre] })
+  const result = await Movie.findByPk(id, { include: [Director, Actor, Genre] })
   if (!result) return res.sendStatus(404)
   return res.json(result)
 })
@@ -39,13 +39,13 @@ const update = catchError(async (req, res) => {
 })
 
 //?/movies/:id/actors
-const setActor = catchError(async (req, res) => {
+const setActors = catchError(async (req, res) => {
   //identificate the movie
   const { id } = req.params
   const movie = await Movie.findByPk(id)
 
   //set the actor to a movie
-  await movie.setActor(req.body)
+  await movie.setActors(req.body)
 
   //get the actors form the set action
   const actors = await movie.getActors()
@@ -54,7 +54,7 @@ const setActor = catchError(async (req, res) => {
 })
 
 //?/movies/:id/directors
-const setDirector = catchError(async (req, res) => {
+const setDirectors = catchError(async (req, res) => {
   //identificate the movie
   const { id } = req.params
   const movie = await Movie.findByPk(id)
@@ -63,7 +63,7 @@ const setDirector = catchError(async (req, res) => {
   await movie.setDirectors(req.body)
 
   //get the directors form the set action
-  const directors = await artist.getDirectors()
+  const directors = await movie.getDirectors()
 
   return res.json(directors)
 })
@@ -89,7 +89,7 @@ module.exports = {
   getOne,
   remove,
   update,
-  setActor,
-  setDirector,
+  setActors,
+  setDirectors,
   setGenres,
 }
